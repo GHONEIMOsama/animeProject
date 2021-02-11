@@ -9,7 +9,7 @@ public class Anime {
     private String imageUrl;
     private String description;
 
-    public Anime(String title, String imageUrl, String description) {
+    public Anime(String title, String description, String imageUrl) {
         this.title = title;
         this.imageUrl = imageUrl;
         this.description = description;
