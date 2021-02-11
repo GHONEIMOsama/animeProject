@@ -4,16 +4,25 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.animeproject.api.repositories.AnimeRepository;
+import com.example.animeproject.ui.models.Anime;
+
+import java.util.List;
+
 public class HomeViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<List<Anime>> animes;
+    private AnimeRepository animeRepository;
 
-    public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+    public void init() {
+        if (animes != null) {
+            return;
+        }
+        animeRepository = AnimeRepository.getInstance();
+        animes = animeRepository.getAnimes();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<List<Anime>> getAnimes() {
+        return animes;
     }
 }
