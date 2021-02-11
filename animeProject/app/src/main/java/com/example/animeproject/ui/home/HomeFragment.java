@@ -23,6 +23,7 @@ import com.example.animeproject.ui.models.Anime;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -37,12 +38,15 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        /*homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+
+        homeViewModel.init();
+        homeViewModel.getAnimes().observe(getViewLifecycleOwner(), new Observer<List<Anime>>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(List<Anime> animes) {
+                recyclerViewAdapter.notifyDataSetChanged();
             }
-        });*/
+        });
+
         recyclerView = root.findViewById(R.id.recyclerview_vertical);
         change_button = root.findViewById(R.id.change_button);
         initRecyclerView();
@@ -51,7 +55,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        recyclerViewAdapter = new RecyclerViewAdapter(DataGenerator.generateData(), requireContext());
+        recyclerViewAdapter = new RecyclerViewAdapter(homeViewModel.getAnimes().getValue(), requireContext());
         layoutManager = new LinearLayoutManager(requireContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
