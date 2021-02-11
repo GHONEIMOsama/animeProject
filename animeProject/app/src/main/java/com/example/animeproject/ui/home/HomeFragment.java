@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.animeproject.R;
+import com.example.animeproject.ui.adapters.DataGenerator;
 import com.example.animeproject.ui.adapters.RecyclerViewAdapter;
 import com.example.animeproject.ui.models.Anime;
 
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<Anime>(), requireContext());
+        recyclerViewAdapter = new RecyclerViewAdapter(DataGenerator.generateData(), requireContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(recyclerViewAdapter);
     }
