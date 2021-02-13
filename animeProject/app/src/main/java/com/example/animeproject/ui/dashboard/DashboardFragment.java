@@ -43,7 +43,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        recyclerViewAdapter = new RecyclerViewAdapter(DataGenerator.generateData(), requireContext());
+        recyclerViewAdapter = new RecyclerViewAdapter(requireContext());
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         recyclerView.setAdapter(recyclerViewAdapter);
     }

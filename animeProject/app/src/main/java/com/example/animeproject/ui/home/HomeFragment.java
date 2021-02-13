@@ -35,27 +35,33 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        recyclerView = root.findViewById(R.id.recyclerview_vertical);
+        change_button = root.findViewById(R.id.change_button);
+
+        return root;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeViewModel.init();
         homeViewModel.getAnimes().observe(getViewLifecycleOwner(), new Observer<List<Anime>>() {
             @Override
             public void onChanged(List<Anime> animes) {
-                recyclerViewAdapter.notifyDataSetChanged();
+                recyclerViewAdapter.bindViewModels(animes);
             }
         });
-
-        recyclerView = root.findViewById(R.id.recyclerview_vertical);
-        change_button = root.findViewById(R.id.change_button);
         initRecyclerView();
         initListeners();
-        return root;
     }
 
     private void initRecyclerView() {
-        recyclerViewAdapter = new RecyclerViewAdapter(homeViewModel.getAnimes().getValue(), requireContext());
+        recyclerViewAdapter = new RecyclerViewAdapter(requireContext());
         layoutManager = new LinearLayoutManager(requireContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);

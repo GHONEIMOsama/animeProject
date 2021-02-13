@@ -24,8 +24,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
     private Context context;
 
 
-    public RecyclerViewAdapter(List<Anime> animes, Context context) {
-        this.animes = animes;
+    public RecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
@@ -56,5 +55,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
     @Override
     public int getItemCount() {
         return animes.size();
+    }
+
+    public void bindViewModels(List<Anime> animes) {
+        this.animes.clear();
+        this.animes.addAll(animes);
+        notifyDataSetChanged();
     }
 }

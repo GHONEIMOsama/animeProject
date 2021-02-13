@@ -6,6 +6,7 @@ import com.example.animeproject.ui.models.AnimeResponses;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -21,6 +22,6 @@ public interface AnimeService {
             "x-rapidapi-host:jikan1.p.rapidapi.com"
     })
     @GET("search/anime")
-    Call<AnimeResponses> listAnime(@Query("q") String q);
+    Single<AnimeResponses> listAnime(@Query("q") String q);
 
 }
