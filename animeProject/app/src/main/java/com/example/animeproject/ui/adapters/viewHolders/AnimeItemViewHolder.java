@@ -15,14 +15,14 @@ public class AnimeItemViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView image;
     private TextView title;
-    private TextView description;
+    private TextView synopsis;
     private CardView parentLayout;
 
     public AnimeItemViewHolder(@NonNull View itemView) {
         super(itemView);
         image = itemView.findViewById(R.id.image_anime_item);
         title = itemView.findViewById(R.id.title_anime_item);
-        description = itemView.findViewById(R.id.description_anime_item);
+        synopsis = itemView.findViewById(R.id.synopsis_anime_item);
         parentLayout = itemView.findViewById(R.id.parent_layout);
     }
 
@@ -42,12 +42,12 @@ public class AnimeItemViewHolder extends RecyclerView.ViewHolder {
         this.title = title;
     }
 
-    public TextView getDescription() {
-        return description;
+    public TextView getSynopsis() {
+        return synopsis;
     }
 
-    public void setDescription(TextView description) {
-        this.description = description;
+    public void setSynopsis(TextView synopsis) {
+        this.synopsis = synopsis;
     }
 
     public CardView getParentLayout() {

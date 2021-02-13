@@ -40,7 +40,7 @@
             tools:text="Attack on titan" />
 
         <TextView
-            android:id="@+id/description_anime_item"
+            android:id="@+id/synopsis_anime_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:ignore="MissingConstraints"

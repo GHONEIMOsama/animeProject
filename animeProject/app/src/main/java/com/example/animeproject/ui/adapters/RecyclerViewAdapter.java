@@ -44,7 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.getImage());
         holder.getTitle().setText(animes.get(position).getTitle());
-        holder.getDescription().setText(animes.get(position).getDescription());
+        holder.getSynopsis().setText(animes.get(position).getSynopsis());
         holder.getParentLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

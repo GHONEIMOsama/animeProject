@@ -1,18 +1,26 @@
 package com.example.animeproject.api.services;
 
 import com.example.animeproject.ui.models.Anime;
+import com.example.animeproject.ui.models.AnimeResponses;
 
 import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.HeaderMap;
+import retrofit2.http.Headers;
+import retrofit2.http.Query;
 
 public interface AnimeService {
 
-    @GET("anime/16498/episodes")
-    Call<List<Anime>> listAnime(@HeaderMap Map<String, String> headers);
+    @Headers({
+            "x-rapidapi-key:e571cb2c3emshfde7189709c0589p11e602jsnd64518453519",
+            "x-rapidapi-host:jikan1.p.rapidapi.com"
+    })
+    @GET("search/anime")
+    Call<AnimeResponses> listAnime(@Query("q") String q);
 
 }
