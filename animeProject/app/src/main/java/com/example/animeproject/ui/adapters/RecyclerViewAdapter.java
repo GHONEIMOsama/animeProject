@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.animeproject.MainActivity;
 import com.example.animeproject.R;
+import com.example.animeproject.api.entities.AnimeEntity;
+import com.example.animeproject.api.mappers.AnimeToAnimeEntityMapper;
 import com.example.animeproject.ui.adapters.viewHolders.AnimeItemViewHolder;
 import com.example.animeproject.ui.dashboard.DashboardFragment;
 import com.example.animeproject.ui.models.Anime;
@@ -27,6 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
     private List<Anime> animes = new ArrayList<>();
     private Context context;
     private FragmentManager fragmentManager;
+    private AnimeToAnimeEntityMapper animeToAnimeEntityMapper = new AnimeToAnimeEntityMapper();
 
 
     public RecyclerViewAdapter(Context context, FragmentManager fragmentManager) {
@@ -54,10 +57,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
         holder.getParentLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AnimeEntity animeEntity = animeToAnimeEntityMapper.map(anime);
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, new DashboardFragment(anime.getTitle(), anime.getImage_url(), anime.getSynopsis()));
                 fragmentTransaction.commit();
-                Toast.makeText(context, anime.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
     }
