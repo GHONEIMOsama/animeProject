@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,36 +16,43 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.animeproject.R;
 import com.example.animeproject.ui.adapters.DataGenerator;
 import com.example.animeproject.ui.adapters.RecyclerViewAdapter;
 
 public class DashboardFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
-    private RecyclerView recyclerView;
-    private RecyclerViewAdapter recyclerViewAdapter;
+
+    private String title;
+    private String imageUrl;
+    private String synopsis;
+
+    private TextView titleTextView;
+    private ImageView imageView;
+    private TextView synopsisTextView;
+
+    public DashboardFragment() {}
+
+    public DashboardFragment(String title, String imageUrl, String synopsis) {
+        this.title = title;
+        this.imageUrl = imageUrl;
+        this.synopsis = synopsis;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        /*final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
-        recyclerView = root.findViewById(R.id.recyclerview_vertical);
-        initRecyclerView();
+        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        titleTextView = root.findViewById(R.id.details_title);
+        imageView = root.findViewById(R.id.details_image);
+        synopsisTextView = root.findViewById(R.id.details_synopsis);
+        titleTextView.setText(title);
+        Glide.with(requireContext()).load(imageUrl).error(R.mipmap.ic_launcher)
+                .centerCrop()
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(imageView);
+        synopsisTextView.setText(synopsis);
         return root;
-    }
-
-    private void initRecyclerView() {
-        recyclerViewAdapter = new RecyclerViewAdapter(requireContext());
-        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
-        recyclerView.setAdapter(recyclerViewAdapter);
     }
 }

@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        recyclerViewAdapter = new RecyclerViewAdapter(requireContext());
+        recyclerViewAdapter = new RecyclerViewAdapter(requireContext(), getParentFragmentManager());
         layoutManager = new LinearLayoutManager(requireContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);

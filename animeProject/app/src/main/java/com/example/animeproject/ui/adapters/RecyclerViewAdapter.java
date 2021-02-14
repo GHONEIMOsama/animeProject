@@ -7,12 +7,16 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.example.animeproject.MainActivity;
 import com.example.animeproject.R;
 import com.example.animeproject.ui.adapters.viewHolders.AnimeItemViewHolder;
+import com.example.animeproject.ui.dashboard.DashboardFragment;
 import com.example.animeproject.ui.models.Anime;
 
 import java.util.ArrayList;
@@ -22,10 +26,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
 
     private List<Anime> animes = new ArrayList<>();
     private Context context;
+    private FragmentManager fragmentManager;
 
 
-    public RecyclerViewAdapter(Context context) {
+    public RecyclerViewAdapter(Context context, FragmentManager fragmentManager) {
         this.context = context;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -38,16 +44,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull AnimeItemViewHolder holder, int position) {
-        Glide.with(context).load(animes.get(position).getImage_url()).error(R.mipmap.ic_launcher)
+        Anime anime = animes.get(position);
+        Glide.with(context).load(anime.getImage_url()).error(R.mipmap.ic_launcher)
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.getImage());
-        holder.getTitle().setText(animes.get(position).getTitle());
-        holder.getSynopsis().setText(animes.get(position).getSynopsis());
+        holder.getTitle().setText(anime.getTitle());
+        holder.getSynopsis().setText(anime.getSynopsis());
         holder.getParentLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, animes.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, new DashboardFragment(anime.getTitle(), anime.getImage_url(), anime.getSynopsis()));
+                fragmentTransaction.commit();
+                Toast.makeText(context, anime.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
     }
