@@ -38,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull AnimeItemViewHolder holder, int position) {
-        Glide.with(context).load(animes.get(position).getImageUrl()).error(R.mipmap.ic_launcher)
+        Glide.with(context).load(animes.get(position).getImage_url()).error(R.mipmap.ic_launcher)
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.getImage());

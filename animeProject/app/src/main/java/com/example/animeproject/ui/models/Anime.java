@@ -8,7 +8,7 @@ public class Anime {
 
     private UUID id;
     private String title;
-    private String imageUrl;
+    private String image_url;
     private String synopsis;
 
     private Integer malId;
@@ -23,9 +23,9 @@ public class Anime {
     private String rated;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public Anime(String title, String synopsis, String imageUrl) {
+    public Anime(String title, String synopsis, String image_url) {
         this.title = title;
-        this.imageUrl = imageUrl;
+        this.image_url = image_url;
         this.synopsis = synopsis;
         this.id = UUID.randomUUID();
     }
@@ -46,12 +46,12 @@ public class Anime {
         this.title = title;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public String getSynopsis() {
