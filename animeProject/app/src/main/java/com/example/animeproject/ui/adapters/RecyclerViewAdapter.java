@@ -1,6 +1,7 @@
 package com.example.animeproject.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.example.animeproject.DetailsActivity;
 import com.example.animeproject.MainActivity;
 import com.example.animeproject.R;
 import com.example.animeproject.api.entities.AnimeEntity;
@@ -57,10 +59,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
         holder.getParentLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnimeEntity animeEntity = animeToAnimeEntityMapper.map(anime);
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra("title", anime.getTitle());
+                intent.putExtra("image_url", anime.getImage_url());
+                intent.putExtra("synopsis", anime.getSynopsis());
+                context.startActivity(intent);
+                /*FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, new DashboardFragment(anime.getTitle(), anime.getImage_url(), anime.getSynopsis()));
-                fragmentTransaction.commit();
+                fragmentTransaction.commit();*/
             }
         });
     }
