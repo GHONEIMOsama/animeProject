@@ -1,6 +1,7 @@
 package com.example.animeproject;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -14,10 +15,12 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.animeproject.api.db.AnimeDao;
 import com.example.animeproject.api.db.AnimeDatabase;
 import com.example.animeproject.api.entities.AnimeEntity;
+import com.example.animeproject.api.repositories.AnimeRepository;
 
 public class DetailsActivity extends AppCompatActivity {
 
     private static AnimeDatabase animeDatabase;
+    private AnimeRepository animeRepository = AnimeRepository.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,24 +30,20 @@ public class DetailsActivity extends AppCompatActivity {
         String title = getIntent().getStringExtra("title");
         String imageUrl = getIntent().getStringExtra("image_url");
         String synopsis = getIntent().getStringExtra("synopsis");
+        Integer malId = Integer.parseInt(getIntent().getStringExtra("mal_id"), 10);
+
 
         AnimeEntity animeEntity = new AnimeEntity();
         animeEntity.setTitle(title);
         animeEntity.setImageUrl(imageUrl);
+        animeEntity.setUid(malId);
 
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                // Insert Data
-                getAnimeDatabase(getApplicationContext()).animeDao().insertAll(animeEntity);
-            }
-        });
-
-        /*AnimeDatabase animeDatabase = getAnimeDatabase(getApplicationContext());
-        AnimeDao animeDao = animeDatabase.animeDao();
-
-
-        animeDao.insertAll(animeEntity);*/
+        AnimeRepository.initDatabase(getApplicationContext());
+        try {
+            animeRepository.storeAnime(animeEntity);
+        } catch (SQLiteConstraintException e) {
+            e.printStackTrace();
+        }
 
 
         final TextView titleTextView = findViewById(R.id.details_title);
