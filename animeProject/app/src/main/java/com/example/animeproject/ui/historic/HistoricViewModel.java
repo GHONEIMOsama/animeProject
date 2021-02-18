@@ -1,4 +1,4 @@
-package com.example.animeproject.ui.dashboard;
+package com.example.animeproject.ui.historic;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.animeproject.api.entities.AnimeEntity;
 import com.example.animeproject.api.repositories.AnimeRepository;
-import com.example.animeproject.ui.models.Anime;
 import com.example.animeproject.ui.models.AnimeResponses;
 
 import java.util.List;
@@ -21,18 +20,32 @@ public class HistoricViewModel extends ViewModel {
 
     private MutableLiveData<List<AnimeEntity>> animes;
     private AnimeRepository animeRepository;
+    private CompositeDisposable compositeDisposable;
+
 
     public void init() {
         if (animes != null) {
             return;
         }
         animeRepository = AnimeRepository.getInstance();
+        compositeDisposable = new CompositeDisposable();
     }
 
     public LiveData<List<AnimeEntity>> getAnimes() {
         if (animes == null) {
             animes = new MutableLiveData<>();
-            animes.setValue(animeRepository.getAllAnimes());
+            compositeDisposable.add(animeRepository.getAllAnimes().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new DisposableSingleObserver<List<AnimeEntity>>() {
+                        @Override
+                        public void onSuccess(@NonNull List<AnimeEntity> animeEntities) {
+                            animes.setValue(animeEntities);
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            e.printStackTrace();
+                        }
+                    }));
         }
         return animes;
     }

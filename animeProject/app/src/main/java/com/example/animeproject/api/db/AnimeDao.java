@@ -8,11 +8,14 @@ import com.example.animeproject.api.entities.AnimeEntity;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
+import io.reactivex.Single;
+
 @Dao
 public interface AnimeDao {
 
     @Query("SELECT * FROM AnimeEntity")
-    List<AnimeEntity> getAll();
+    Single<List<AnimeEntity>> getAll();
 
     @Insert
     void insertAll(AnimeEntity... animeEntities);

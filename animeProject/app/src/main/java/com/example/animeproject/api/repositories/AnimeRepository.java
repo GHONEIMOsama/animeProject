@@ -3,6 +3,7 @@ package com.example.animeproject.api.repositories;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.lifecycle.ViewModel;
 import androidx.room.Room;
 
 import com.example.animeproject.api.db.AnimeDatabase;
@@ -13,6 +14,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -24,6 +26,7 @@ public class AnimeRepository {
 
     private static AnimeRepository instance;
     private static AnimeDatabase animeDatabase;
+    private static Context context;
 
     public static AnimeRepository getInstance() {
         if (instance == null) {
@@ -56,11 +59,16 @@ public class AnimeRepository {
         });
     }
 
-    public List<AnimeEntity> getAllAnimes() {
+    public Single<List<AnimeEntity>> getAllAnimes() {
         return animeDatabase.animeDao().getAll();
     }
 
-    public static void initDatabase(Context context) {
+    public static void setContext(Context appContext) {
+        context = appContext;
+        initDatabase();
+    }
+
+    private static void initDatabase() {
         if (animeDatabase == null) {
             animeDatabase = Room.databaseBuilder(context, AnimeDatabase.class, "anime-database").build();
         }
