@@ -38,7 +38,6 @@ public class DetailsActivity extends AppCompatActivity {
         animeEntity.setImageUrl(imageUrl);
         animeEntity.setUid(malId);
 
-        AnimeRepository.initDatabase(getApplicationContext());
         try {
             animeRepository.storeAnime(animeEntity);
         } catch (SQLiteConstraintException e) {

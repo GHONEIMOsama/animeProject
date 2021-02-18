@@ -21,9 +21,9 @@ public class HistoricAnimeItemViewHolder extends RecyclerView.ViewHolder {
 
     public HistoricAnimeItemViewHolder(@NonNull View itemView) {
         super(itemView);
-        image = itemView.findViewById(R.id.image_anime_item);
-        title = itemView.findViewById(R.id.title_anime_item);
-        parentLayout = itemView.findViewById(R.id.parent_layout);
+        image = itemView.findViewById(R.id.historic_circle_image);
+        title = itemView.findViewById(R.id.historic_title);
+        parentLayout = itemView.findViewById(R.id.historic_parent_layout);
     }
 
     public CircleImageView getImage() {
