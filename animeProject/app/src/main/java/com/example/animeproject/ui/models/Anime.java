@@ -11,7 +11,7 @@ public class Anime {
     private String image_url;
     private String synopsis;
 
-    private Integer malId;
+    private Integer mal_id;
     private String url;
     private Boolean airing;
     private String type;
@@ -62,12 +62,12 @@ public class Anime {
         this.synopsis = synopsis;
     }
 
-    public Integer getMalId() {
-        return malId;
+    public Integer getMal_id() {
+        return mal_id;
     }
 
-    public void setMalId(Integer malId) {
-        this.malId = malId;
+    public void setMal_id(Integer mal_id) {
+        this.mal_id = mal_id;
     }
 
     public String getUrl() {
@@ -148,5 +148,26 @@ public class Anime {
 
     public void setAdditionalProperties(Map<String, Object> additionalProperties) {
         this.additionalProperties = additionalProperties;
+    }
+
+    @Override
+    public String toString() {
+        return "Anime{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", synopsis='" + synopsis + '\'' +
+                ", mal_id=" + mal_id +
+                ", url='" + url + '\'' +
+                ", airing=" + airing +
+                ", type='" + type + '\'' +
+                ", episodes=" + episodes +
+                ", score=" + score +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", members=" + members +
+                ", rated='" + rated + '\'' +
+                ", additionalProperties=" + additionalProperties +
+                '}';
     }
 }
