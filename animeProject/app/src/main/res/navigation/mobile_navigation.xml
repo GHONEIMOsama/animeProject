@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_historic"
+        android:name="com.example.animeproject.ui.historic.HistoricFragment"
+        android:label="@string/title_historic"
+        tools:layout="@layout/fragment_historic" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.animeproject.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
