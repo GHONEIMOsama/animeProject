@@ -2,6 +2,7 @@ package com.example.animeproject;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteConstraintException;
+import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -38,11 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
         animeEntity.setImageUrl(imageUrl);
         animeEntity.setUid(malId);
 
-        try {
-            animeRepository.storeAnime(animeEntity);
-        } catch (SQLiteConstraintException e) {
-            e.printStackTrace();
-        }
+        animeRepository.storeAnime(animeEntity);
 
 
         final TextView titleTextView = findViewById(R.id.details_title);
