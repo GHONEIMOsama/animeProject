@@ -5,22 +5,17 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.animeproject.DetailsActivity;
-import com.example.animeproject.MainActivity;
 import com.example.animeproject.R;
-import com.example.animeproject.api.entities.AnimeEntity;
 import com.example.animeproject.api.mappers.AnimeToAnimeEntityMapper;
 import com.example.animeproject.ui.adapters.viewHolders.AnimeItemViewHolder;
-import com.example.animeproject.ui.dashboard.DashboardFragment;
 import com.example.animeproject.ui.models.Anime;
 
 import java.util.ArrayList;
@@ -63,10 +58,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
                 intent.putExtra("title", anime.getTitle());
                 intent.putExtra("image_url", anime.getImage_url());
                 intent.putExtra("synopsis", anime.getSynopsis());
+                intent.putExtra("mal_id", anime.getMal_id().toString());
                 context.startActivity(intent);
-                /*FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new DashboardFragment(anime.getTitle(), anime.getImage_url(), anime.getSynopsis()));
-                fragmentTransaction.commit();*/
             }
         });
     }

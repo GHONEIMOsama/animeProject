@@ -8,43 +8,57 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.animeproject.R;
+import com.example.animeproject.api.entities.AnimeEntity;
+import com.example.animeproject.ui.adapters.HistoricRecyclerViewAdapter;
+import com.example.animeproject.ui.adapters.RecyclerViewAdapter;
+import com.example.animeproject.ui.home.HomeViewModel;
+import com.example.animeproject.ui.models.Anime;
 
-public class DashboardFragment extends Fragment {
+import java.util.List;
 
+public class HistoricFragment extends Fragment {
 
-    private String title;
-    private String imageUrl;
-    private String synopsis;
+    private RecyclerView recyclerView;
+    private HistoricViewModel historicViewModel;
+    private HistoricRecyclerViewAdapter historicRecyclerViewAdapter;
 
-    private TextView titleTextView;
-    private ImageView imageView;
-    private TextView synopsisTextView;
+    public HistoricFragment() {}
 
-    public DashboardFragment() {}
-
-    public DashboardFragment(String title, String imageUrl, String synopsis) {
-        this.title = title;
-        this.imageUrl = imageUrl;
-        this.synopsis = synopsis;
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.activity_details, container, false);
-        titleTextView = root.findViewById(R.id.details_title);
-        imageView = root.findViewById(R.id.details_image);
-        synopsisTextView = root.findViewById(R.id.details_synopsis);
-        titleTextView.setText(title);
-        Glide.with(requireContext()).load(imageUrl).error(R.mipmap.ic_launcher)
-                .centerCrop()
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(imageView);
-        synopsisTextView.setText(synopsis);
+        View root = inflater.inflate(R.layout.fragment_historic, container, false);
+        recyclerView = root.findViewById(R.id.recyclerview_historic);
         return root;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        historicViewModel = new ViewModelProvider(this).get(HistoricViewModel.class);
+        historicViewModel.init();
+        historicViewModel.getAnimes().observe(getViewLifecycleOwner(), new Observer<List<AnimeEntity>>() {
+            @Override
+            public void onChanged(List<AnimeEntity> animes) {
+                historicRecyclerViewAdapter.bindViewModels(animes);
+            }
+        });
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        historicRecyclerViewAdapter = new HistoricRecyclerViewAdapter(requireContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerView.setAdapter(historicRecyclerViewAdapter);
     }
 }
