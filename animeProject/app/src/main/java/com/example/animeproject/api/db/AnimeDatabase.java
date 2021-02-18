@@ -6,6 +6,6 @@ import androidx.room.RoomDatabase;
 import com.example.animeproject.api.entities.AnimeEntity;
 
 @Database(entities = {AnimeEntity.class}, version = 1)
-public abstract class AppDatabase extends RoomDatabase {
+public abstract class AnimeDatabase extends RoomDatabase {
     public abstract AnimeDao animeDao();
 }
