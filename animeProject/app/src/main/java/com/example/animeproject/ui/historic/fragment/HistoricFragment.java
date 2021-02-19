@@ -1,4 +1,4 @@
-package com.example.animeproject.ui.historic;
+package com.example.animeproject.ui.historic.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.animeproject.R;
 import com.example.animeproject.api.entities.AnimeEntity;
-import com.example.animeproject.ui.adapters.HistoricRecyclerViewAdapter;
+import com.example.animeproject.ui.historic.adapter.HistoricRecyclerViewAdapter;
+import com.example.animeproject.ui.historic.viewModel.HistoricViewModel;
 
 import java.util.List;
 

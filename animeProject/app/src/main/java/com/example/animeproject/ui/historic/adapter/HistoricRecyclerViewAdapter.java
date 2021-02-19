@@ -1,23 +1,17 @@
-package com.example.animeproject.ui.adapters;
+package com.example.animeproject.ui.historic.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.example.animeproject.DetailsActivity;
 import com.example.animeproject.R;
 import com.example.animeproject.api.entities.AnimeEntity;
-import com.example.animeproject.ui.adapters.viewHolders.AnimeItemViewHolder;
-import com.example.animeproject.ui.adapters.viewHolders.HistoricAnimeItemViewHolder;
-import com.example.animeproject.ui.models.Anime;
+import com.example.animeproject.ui.historic.adapter.viewHolder.HistoricAnimeItemViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;

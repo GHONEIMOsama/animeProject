@@ -1,4 +1,4 @@
-package com.example.animeproject.ui.adapters;
+package com.example.animeproject.ui.home.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.animeproject.DetailsActivity;
 import com.example.animeproject.R;
-import com.example.animeproject.ui.adapters.viewHolders.AnimeItemViewHolder;
+import com.example.animeproject.ui.home.adapter.viewHolder.AnimeItemViewHolder;
 import com.example.animeproject.ui.models.Anime;
 
 import java.util.ArrayList;

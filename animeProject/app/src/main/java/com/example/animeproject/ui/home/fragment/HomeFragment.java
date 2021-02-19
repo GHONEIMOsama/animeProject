@@ -1,4 +1,4 @@
-package com.example.animeproject.ui.home;
+package com.example.animeproject.ui.home.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.animeproject.R;
-import com.example.animeproject.ui.adapters.RecyclerViewAdapter;
+import com.example.animeproject.ui.home.adapter.RecyclerViewAdapter;
+import com.example.animeproject.ui.home.viewModel.HomeViewModel;
 import com.example.animeproject.ui.models.Anime;
 
 import java.util.List;

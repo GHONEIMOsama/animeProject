@@ -1,4 +1,4 @@
-package com.example.animeproject.ui.adapters.viewHolders;
+package com.example.animeproject.ui.historic.adapter.viewHolder;
 
 import android.view.View;
 import android.widget.ImageView;

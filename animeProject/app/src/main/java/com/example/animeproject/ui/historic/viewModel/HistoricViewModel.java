@@ -1,4 +1,4 @@
-package com.example.animeproject.ui.historic;
+package com.example.animeproject.ui.historic.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
