@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">animeProject</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_historic">Historic</string>
+    <string name="title_logoff">logoff</string>
+    <string name="title_historic">Historiy</string>
     <string name="logOff">LOG OFF</string>
 </resources>

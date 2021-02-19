@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_historic" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_logoff"
         android:name="com.example.animeproject.ui.logOff.LogoffFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_logOff" />
+        android:label="@string/title_logoff"
+        tools:layout="@layout/fragment_logoff" />
 </navigation>
