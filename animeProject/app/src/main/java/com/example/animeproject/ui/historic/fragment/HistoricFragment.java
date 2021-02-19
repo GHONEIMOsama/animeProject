@@ -41,6 +41,7 @@ public class HistoricFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         historicViewModel = new ViewModelProvider(this).get(HistoricViewModel.class);
         historicViewModel.init();
+        // Sending the data to the recyclerview's adapter after receiving it from local database
         historicViewModel.getAnimes().observe(getViewLifecycleOwner(), new Observer<List<AnimeEntity>>() {
             @Override
             public void onChanged(List<AnimeEntity> animes) {
@@ -50,6 +51,9 @@ public class HistoricFragment extends Fragment {
         initRecyclerView();
     }
 
+    /**
+     * Inialize the recyclerView
+     */
     private void initRecyclerView() {
         historicRecyclerViewAdapter = new HistoricRecyclerViewAdapter(requireContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));

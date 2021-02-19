@@ -22,7 +22,9 @@ public class HistoricViewModel extends ViewModel {
     private AnimeRepository animeRepository;
     private CompositeDisposable compositeDisposable;
 
-
+    /**
+     * Initialize the viewModel fields
+     */
     public void init() {
         if (animes != null) {
             return;
@@ -31,6 +33,10 @@ public class HistoricViewModel extends ViewModel {
         compositeDisposable = new CompositeDisposable();
     }
 
+    /**
+     * fetching data from database using repository
+     * @return a lifeData object containing a list of animeEntity objects fetched from the database using the repository.
+     */
     public LiveData<List<AnimeEntity>> getAnimes() {
         if (animes == null) {
             animes = new MutableLiveData<>();

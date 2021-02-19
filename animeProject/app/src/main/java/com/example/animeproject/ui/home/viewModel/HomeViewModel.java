@@ -23,6 +23,9 @@ public class HomeViewModel extends ViewModel {
     private AnimeRepository animeRepository;
     private CompositeDisposable compositeDisposable;
 
+    /**
+     * Initialize the viewModel fields
+     */
     public void init() {
         if (animes != null) {
             return;
@@ -31,6 +34,10 @@ public class HomeViewModel extends ViewModel {
         compositeDisposable = new CompositeDisposable();
     }
 
+    /**
+     * A method to get the animes after calling an external api
+     * @return a lifeData object containing a list of Anime objects fetched from the public api using the repository
+     */
     public LiveData<List<Anime>> getAnimes() {
         if (animes == null) {
             animes = new MutableLiveData<>();

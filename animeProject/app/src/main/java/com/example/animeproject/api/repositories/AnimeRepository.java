@@ -28,6 +28,10 @@ public class AnimeRepository {
     private static AnimeDatabase animeDatabase;
     private static Context context;
 
+    /**
+     * A method implement to apply the singleton design pattern.
+     * @return an AnimeRepository object
+     */
     public static AnimeRepository getInstance() {
         if (instance == null) {
             instance = new AnimeRepository();
@@ -35,6 +39,10 @@ public class AnimeRepository {
         return instance;
     }
 
+    /**
+     * A method used to call public api to retreive data from it.
+     * @return a Single object of AnimeResponses object containing the data fetched from the public api
+     */
     public Single<AnimeResponses> getAnimes() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -49,6 +57,10 @@ public class AnimeRepository {
         return animeService.listAnime("Attack%20on%20Titan");
     }
 
+    /**
+     * used to store an AnimeEntity in the local database.
+     * @param animeEntity an AnimeEntity object to be stored in the local database.
+     */
     public void storeAnime(AnimeEntity animeEntity) {
         AsyncTask.execute(new Runnable() {
             @Override
@@ -59,15 +71,26 @@ public class AnimeRepository {
         });
     }
 
+    /**
+     * used to fetch all AnimeEntities object from local database.
+     * @return a Single object of List of AnimeEntity objects representing all AnimeEntities stored in the local database.
+     */
     public Single<List<AnimeEntity>> getAllAnimes() {
         return animeDatabase.animeDao().getAll();
     }
 
+    /**
+     * A method used to init the context and the database.
+     * @param appContext the application context of the app.
+     */
     public static void setContext(Context appContext) {
         context = appContext;
         initDatabase();
     }
 
+    /**
+     * used to initialize the database.
+     */
     private static void initDatabase() {
         if (animeDatabase == null) {
             animeDatabase = Room.databaseBuilder(context, AnimeDatabase.class, "anime-database").build();

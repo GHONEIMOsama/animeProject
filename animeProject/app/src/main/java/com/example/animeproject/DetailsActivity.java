@@ -38,13 +38,13 @@ public class DetailsActivity extends AppCompatActivity {
         Integer malId = Integer.parseInt(getIntent().getStringExtra("mal_id"), 10);
 
 
+        // Storing the anime consulted in the database
         AnimeEntity animeEntity = new AnimeEntity();
         animeEntity.setTitle(title);
         animeEntity.setImageUrl(imageUrl);
         Date currentTime = Calendar.getInstance().getTime();
         DateFormat dateFormat = new DateFormat();
         animeEntity.setDate(dateFormat.format("yyyy-MM-dd hh:mm:ss", currentTime).toString());
-
         animeRepository.storeAnime(animeEntity);
 
 
@@ -59,10 +59,4 @@ public class DetailsActivity extends AppCompatActivity {
         synopsisTextView.setText(synopsis);
     }
 
-    public static AnimeDatabase getAnimeDatabase(Context context) {
-        if (animeDatabase == null) {
-            animeDatabase = Room.databaseBuilder(context, AnimeDatabase.class, "anime-database").build();
-        }
-        return animeDatabase;
-    }
 }

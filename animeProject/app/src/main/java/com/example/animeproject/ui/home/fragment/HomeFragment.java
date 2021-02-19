@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeViewModel.init();
+        // Sending the data to the recyclerview's adapter after receiving it from public api
         homeViewModel.getAnimes().observe(getViewLifecycleOwner(), new Observer<List<Anime>>() {
             @Override
             public void onChanged(List<Anime> animes) {
@@ -57,6 +58,9 @@ public class HomeFragment extends Fragment {
         initListeners();
     }
 
+    /**
+     * Inialize the recyclerView
+     */
     private void initRecyclerView() {
         recyclerViewAdapter = new RecyclerViewAdapter(requireContext(), getParentFragmentManager());
         layoutManager = new LinearLayoutManager(requireContext());
@@ -64,6 +68,10 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
+    /**
+     * used to set listeners.
+     * set a listener on the button to change layout manager.
+     */
     private void initListeners() {
         change_button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        // initialize the repository and the database
         AnimeRepository.setContext(getApplicationContext());
     }
 
