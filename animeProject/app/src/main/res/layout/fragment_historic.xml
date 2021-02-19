@@ -12,8 +12,13 @@
         android:id="@+id/recyclerview_historic"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".80"
+        android:layout_weight=".90"
         />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".10"/>
 
     </LinearLayout>
 
