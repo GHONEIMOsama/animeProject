@@ -44,9 +44,8 @@ public class HistoricRecyclerViewAdapter extends RecyclerView.Adapter<HistoricAn
     @Override
     public void onBindViewHolder(@NonNull HistoricAnimeItemViewHolder holder, int position) {
         AnimeEntity anime = animes.get(position);
-        Glide.with(context).load(anime.getImageUrl()).error(R.mipmap.ic_launcher)
-                .centerCrop().dontAnimate()
-                .transition(DrawableTransitionOptions.withCrossFade())
+        Glide.with(context).load(anime.getImageUrl()).error(R.mipmap.ic_launcher).dontAnimate()
+                .centerCrop()
                 .into(holder.getImage());
         holder.getTitle().setText(anime.getTitle());
     }
