@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,9 @@ import com.example.animeproject.api.db.AnimeDao;
 import com.example.animeproject.api.db.AnimeDatabase;
 import com.example.animeproject.api.entities.AnimeEntity;
 import com.example.animeproject.api.repositories.AnimeRepository;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -37,7 +41,9 @@ public class DetailsActivity extends AppCompatActivity {
         AnimeEntity animeEntity = new AnimeEntity();
         animeEntity.setTitle(title);
         animeEntity.setImageUrl(imageUrl);
-        animeEntity.setUid(malId);
+        Date currentTime = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new DateFormat();
+        animeEntity.setDate(dateFormat.format("yyyy-MM-dd hh:mm:ss", currentTime).toString());
 
         animeRepository.storeAnime(animeEntity);
 

@@ -9,8 +9,8 @@ import java.util.UUID;
 @Entity
 public class AnimeEntity {
 
-    @PrimaryKey
-    private int uid;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     @ColumnInfo(name = "title")
     private String title;
@@ -18,12 +18,15 @@ public class AnimeEntity {
     @ColumnInfo(name = "image_url")
     private String imageUrl;
 
-    public int getUid() {
-        return uid;
+    @ColumnInfo(name = "date")
+    private String date;
+
+    public int getId() {
+        return id;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -40,5 +43,13 @@ public class AnimeEntity {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

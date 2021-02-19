@@ -15,7 +15,6 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.animeproject.DetailsActivity;
 import com.example.animeproject.R;
 import com.example.animeproject.api.entities.AnimeEntity;
-import com.example.animeproject.api.mappers.AnimeToAnimeEntityMapper;
 import com.example.animeproject.ui.adapters.viewHolders.AnimeItemViewHolder;
 import com.example.animeproject.ui.adapters.viewHolders.HistoricAnimeItemViewHolder;
 import com.example.animeproject.ui.models.Anime;
@@ -48,6 +47,7 @@ public class HistoricRecyclerViewAdapter extends RecyclerView.Adapter<HistoricAn
                 .centerCrop()
                 .into(holder.getImage());
         holder.getTitle().setText(anime.getTitle());
+        holder.getDate().setText(anime.getDate());
     }
 
     @Override

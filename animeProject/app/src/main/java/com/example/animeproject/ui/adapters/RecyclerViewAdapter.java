@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.animeproject.DetailsActivity;
 import com.example.animeproject.R;
-import com.example.animeproject.api.mappers.AnimeToAnimeEntityMapper;
 import com.example.animeproject.ui.adapters.viewHolders.AnimeItemViewHolder;
 import com.example.animeproject.ui.models.Anime;
 
@@ -26,7 +25,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<AnimeItemViewHolde
     private List<Anime> animes = new ArrayList<>();
     private Context context;
     private FragmentManager fragmentManager;
-    private AnimeToAnimeEntityMapper animeToAnimeEntityMapper = new AnimeToAnimeEntityMapper();
 
 
     public RecyclerViewAdapter(Context context, FragmentManager fragmentManager) {
