@@ -15,7 +15,7 @@ import io.reactivex.Single;
 @Dao
 public interface AnimeDao {
 
-    @Query("SELECT * FROM AnimeEntity")
+    @Query("SELECT * FROM AnimeEntity ORDER BY datetime(date_col) DESC")
     Single<List<AnimeEntity>> getAll();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

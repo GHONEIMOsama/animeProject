@@ -1,6 +1,7 @@
 package com.example.animeproject.ui.historic.adapter;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
